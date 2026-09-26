@@ -9,8 +9,6 @@ def check_file_type(file_path):
         raise ValueError(f"Unsupported file type: {path.suffix}. Only .txt and .pdf files are supported.")
     return path.suffix.lower()
 
-# print(check_file_type("data/test.txt"))
-
 def read_pdf(file_path):
     reader = PdfReader(file_path)
     text = []
@@ -22,7 +20,7 @@ def read_txt(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         return file.read()
 
-def list_files_in_directory(directory_path):
+def load_documents(directory_path):
     directory = Path(directory_path)
     file_info = []
     for file_path in directory.iterdir():
@@ -34,9 +32,3 @@ def list_files_in_directory(directory_path):
             text = read_pdf(file_path)
         file_info.append({"source": file_path.name, "text": text})
     return file_info
-
-# print(list(list_files_in_directory("data")))
-
-# result = list_files_in_directory("data")
-# print(result[0]["source"])
-    
