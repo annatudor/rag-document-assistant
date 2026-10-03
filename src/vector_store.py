@@ -1,4 +1,5 @@
 import chromadb
+import ollama
 from src.config import CHROMA_PATH, COLLECTION_NAME
 
 def get_collection():
@@ -24,9 +25,9 @@ def add_chunks(collection, chunks):
         metadatas=metadatas,
     )
 
-def search(collection, query_embedding, k):
+def search(collection, query_embedding, k = 3):
     top_k_results = []
-    results = collection.query(query_embeddings = query_embedding, n_results = k)
+    results = collection.query(query_embeddings = [query_embedding], n_results = k)
 
     for doc, meta, dist in zip(results["documents"][0], results["metadatas"][0], results["distances"][0]):
       top_k_results.append({"text": doc, "source": meta["source"], "distance": dist})
