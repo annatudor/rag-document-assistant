@@ -24,6 +24,7 @@ def call_llm(messages):
     model= GENERATION_MODEL,
     messages= messages,
     think=False,
+    options={"temperature": 0},
 )
     return response.message.content
 

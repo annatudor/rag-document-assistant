@@ -18,7 +18,7 @@ def add_chunks(collection, chunks):
         documents.append(chunk["text"])
         metadatas.append({"source": chunk["source"]})
 
-    collection.add(
+    collection.upsert(
         ids=ids,
         embeddings=embeddings,
         documents=documents,
